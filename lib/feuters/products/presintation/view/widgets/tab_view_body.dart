@@ -66,7 +66,7 @@ class _TabViewBodyState extends State<TabViewBody>
                 ),
                 tabs: List.generate(
                   8,
-                  (index) => Tab(
+                  (index) => const Tab(
                     text: 'Gerat Offers',
                   ),
                 ),

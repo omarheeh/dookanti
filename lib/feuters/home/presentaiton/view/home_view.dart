@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:page_transition/page_transition.dart';
 
 class HomeView extends StatelessWidget {
+  static const String id = 'homeview';
   const HomeView({
     super.key,
     required this.onPressed,

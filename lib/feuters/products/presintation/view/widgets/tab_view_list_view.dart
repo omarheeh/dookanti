@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:dookanti/feuters/products/presintation/view/widgets/tab_view_list_view_item.dart';
 import 'package:flutter/material.dart';
 
 class TabViewListView extends StatefulWidget {
@@ -14,30 +14,27 @@ class TabViewListView extends StatefulWidget {
 class _TabViewListViewState extends State<TabViewListView> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     log('start');
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     log('dispose');
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 8,
-        itemBuilder: (context, index) {
-          return Text('omar');
-        });
+    return ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      itemCount: 20,
+      separatorBuilder: (context, index) {
+        return const Divider();
+      },
+      itemBuilder: (context, index) {
+        return TabViewListViewItem();
+      },
+    );
   }
 }
-
-
-/*
-
-
-*/

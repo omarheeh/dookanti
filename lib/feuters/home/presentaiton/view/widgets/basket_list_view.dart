@@ -1,7 +1,5 @@
-import 'package:dookanti/core/style/app_colors.dart';
+import 'package:dookanti/feuters/home/presentaiton/view/widgets/basket_list_view_item.dart';
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 
 class BasketListView extends StatelessWidget {
   const BasketListView({
@@ -17,88 +15,10 @@ class BasketListView extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           itemCount: 20,
           separatorBuilder: (context, index) {
-            return Divider();
+            return const Divider();
           },
           itemBuilder: (context, index) {
-            return Stack(
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 60,
-                      height: 110,
-                      child: CachedNetworkImage(
-                        imageUrl: "https://i.postimg.cc/65PTZYrb/IMG-4066.jpg",
-                        fit: BoxFit.contain,
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Alyad organlucm egges 30 piesse',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text('10.00\$'),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 6,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color:
-                                      AppColors.primaryColor.withOpacity(0.2),
-                                ),
-                                child: const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.remove),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      '1',
-                                      style: TextStyle(
-                                        color: AppColors.primaryColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(width: 5),
-                                    Icon(Icons.add),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Icon(
-                    IconlyLight.delete,
-                    color: AppColors.primaryColor,
-                  ),
-                )
-              ],
-            );
+            return BasketListViewItem();
           },
         ),
       ),
