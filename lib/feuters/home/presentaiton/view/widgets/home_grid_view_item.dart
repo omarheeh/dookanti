@@ -1,4 +1,4 @@
-import 'package:dookanti/feuters/page_controller/page_controler_cubit.dart';
+import 'package:dookanti/core/cubits/page_controller/page_controler_cubit.dart';
 import 'package:dookanti/feuters/products/presintation/view/tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,9 +1,9 @@
+import 'package:dookanti/core/cubits/page_controller/page_controler_cubit.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-import '../../../page_controller/page_controler_cubit.dart';
 import 'widgets/tab_view_body.dart';
 
 class TabView extends StatelessWidget {

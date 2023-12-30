@@ -1,7 +1,5 @@
-import 'package:dookanti/core/style/app_colors.dart';
 import 'package:dookanti/core/widgets/k_spaser.dart';
 import 'package:dookanti/core/widgets/title_widget.dart';
-import 'package:dookanti/feuters/aboutus/presintaion/view/widgets/contact_us_view_body.dart';
 import 'package:dookanti/feuters/aboutus/presintaion/view/widgets/custom_contact_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';

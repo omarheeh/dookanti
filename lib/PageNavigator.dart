@@ -2,10 +2,11 @@ import 'package:dookanti/core/functions/size_config.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/home_view.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/custom_draggable_scroll.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/home_view_drawer.dart';
-import 'package:dookanti/feuters/page_controller/page_controler_cubit.dart';
 import 'package:dookanti/feuters/products/presintation/view/tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'core/cubits/page_controller/page_controler_cubit.dart';
 
 class PageNavigator extends StatefulWidget {
   const PageNavigator({super.key});
