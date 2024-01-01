@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "629948825924",
+    "project_id": "dookanti-a7a10",
+    "storage_bucket": "dookanti-a7a10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629948825924:android:eda0c9e2288a29ffcd9711",
+        "android_client_info": {
+          "package_name": "com.example.dookanti"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA6-1_s8epsQHsDEuCBCz51GxzSrX1koI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

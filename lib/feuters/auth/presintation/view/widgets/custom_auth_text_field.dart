@@ -5,13 +5,16 @@ class CustomAuthTextField extends StatelessWidget {
     super.key,
     required this.title,
     this.textEditingController,
+    this.validator,
   });
   final String title;
   final TextEditingController? textEditingController;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: textEditingController,
+      validator: validator,
       decoration: InputDecoration(
         label: Text(
           title,

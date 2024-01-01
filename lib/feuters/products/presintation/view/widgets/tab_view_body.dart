@@ -35,54 +35,59 @@ class _TabViewBodyState extends State<TabViewBody>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: DefaultTabController(
-          length: 8,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Oil',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+      child: DefaultTabController(
+        length: 8,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Oil',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TabBar(
+                    controller: _tabController,
+                    isScrollable: true,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    unselectedLabelColor: Colors.black,
+                    labelStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    labelColor: Colors.white,
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: AppColors.primaryColor,
+                    ),
+                    tabs: List.generate(
+                      8,
+                      (index) => const Tab(
+                        text: 'Gerat Offers',
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 10),
-              TabBar(
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: TabBarView(
                 controller: _tabController,
-                isScrollable: true,
-                indicatorSize: TabBarIndicatorSize.tab,
-                unselectedLabelColor: Colors.black,
-                labelStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-                labelColor: Colors.white,
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: AppColors.primaryColor,
-                ),
-                tabs: List.generate(
+                children: List.generate(
                   8,
-                  (index) => const Tab(
-                    text: 'Gerat Offers',
-                  ),
+                  (index) => const TabViewListView(),
                 ),
               ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: List.generate(
-                    8,
-                    (index) => const TabViewListView(),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

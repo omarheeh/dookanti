@@ -26,15 +26,18 @@ class _TabViewListViewState extends State<TabViewListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      physics: const BouncingScrollPhysics(),
-      itemCount: 20,
-      separatorBuilder: (context, index) {
-        return const Divider();
-      },
-      itemBuilder: (context, index) {
-        return TabViewListViewItem();
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
+        itemCount: 20,
+        separatorBuilder: (context, index) {
+          return const Divider();
+        },
+        itemBuilder: (context, index) {
+          return TabViewListViewItem();
+        },
+      ),
     );
   }
 }
