@@ -38,4 +38,9 @@ class AuthRepoImpl extends AuthRepo {
       return left(FireBaseFailure('login is failure'));
     }
   }
+
+  @override
+  Future<void> signOut() async {
+    authServise.signOut();
+  }
 }

@@ -18,4 +18,8 @@ class AuthServise {
         email: emailAddress, password: password);
     return credential;
   }
+
+  Future<void> signOut() async {
+    firebaseAuth.signOut();
+  }
 }
