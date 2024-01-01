@@ -44,6 +44,7 @@ dependencies:
   firebase_auth: ^4.15.3
   dartz: ^0.10.1
   cloud_firestore: ^4.13.6
+  modal_progress_hud_nsn: ^0.4.0
 
 dev_dependencies:
   flutter_test:
