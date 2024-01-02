@@ -9,12 +9,14 @@ class CustomButton extends StatelessWidget {
     required this.title,
     this.color = AppColors.primaryColor,
     this.filldText = false,
+    this.isLoading = false,
   });
   final bool outLine;
   final void Function()? onTap;
   final String title;
   final Color color;
   final bool filldText;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -34,19 +36,28 @@ class CustomButton extends StatelessWidget {
               ),
             ),
             child: Center(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: filldText
-                      ? color
-                      : outLine
-                          ? AppColors.primaryColor
-                          : Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              child: isLoading
+                  ? SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: filldText
+                            ? color
+                            : outLine
+                                ? AppColors.primaryColor
+                                : Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
             ),
           ),
         ),

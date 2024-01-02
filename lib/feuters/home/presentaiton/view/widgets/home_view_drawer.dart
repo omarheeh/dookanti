@@ -1,5 +1,3 @@
-import 'dart:isolate';
-
 import 'package:dookanti/core/widgets/app_custom_logo.dart';
 import 'package:dookanti/core/widgets/k_spaser.dart';
 import 'package:dookanti/feuters/aboutus/presintaion/view/compaints_view.dart';

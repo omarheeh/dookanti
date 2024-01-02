@@ -1,10 +1,5 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dookanti/core/servise/firestore_servise.dart';
-import 'package:dookanti/feuters/home/data/models/categories_model.dart';
-import 'package:dookanti/feuters/home/data/models/part_model.dart';
-import 'package:dookanti/feuters/home/data/models/product_model.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/home_view_body.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/notification_view.dart';
 import 'package:flutter/material.dart';
@@ -43,17 +38,6 @@ class HomeView extends StatelessWidget {
         ],
       ),
       body: const HomeViewBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          FireStoreServise fireStoreServise =
-              FireStoreServise(FirebaseFirestore.instance);
-
-          var data = await fireStoreServise.getProducts(
-              collection: 'products', partId: 'm9CJChm4MoQEMCzd7o7P');
-          log(data.docs.length.toString());
-        },
-        child: Icon(Icons.send),
-      ),
     );
   }
 }

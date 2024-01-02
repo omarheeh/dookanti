@@ -54,6 +54,12 @@ class CartCubit extends Cubit<CartState> {
     return cartItem.length;
   }
 
+  void clear() {
+    emit(CartRemove());
+    cartItem.clear();
+    emit(CartRemoveDone());
+  }
+
   double sumPrice() {
     double sum = 0;
     cartItem.forEach((key, value) {
@@ -74,6 +80,7 @@ class CartCubit extends Cubit<CartState> {
       'email': email,
       'username': username,
       'data': DateTime.now(),
+      'sumPrice': sumPrice(),
     });
     result.fold((failure) => emit(CartSendSucsess(failure.errMessage)),
         (sucsess) => emit(CartSendSucsess(sucsess)));

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dookanti/feuters/auth/data/models/user_model.dart';
 import 'package:dookanti/feuters/auth/presintation/view_model/auth_cubit/auth_cubit_cubit.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/basket_list_view.dart';
@@ -57,19 +56,24 @@ class DraggableScrollBody extends StatelessWidget {
                   ),
                   SizedBox(width: 16),
                   Expanded(
-                    child: CustomButton(
-                      onTap: () {
-                        if (BlocProvider.of<AuthCubitCubit>(context)
-                            .isLogin()) {
-                          UserModel userModel =
-                              BlocProvider.of<AuthCubitCubit>(context)
-                                  .userModel!;
-                          BlocProvider.of<CartCubit>(context).sendOreder(
-                              email: userModel.email,
-                              username: userModel.username);
-                        }
+                    child: BlocBuilder<CartCubit, CartState>(
+                      builder: (context, state) {
+                        return CustomButton(
+                          onTap: () {
+                            if (BlocProvider.of<AuthCubitCubit>(context)
+                                .isLogin()) {
+                              UserModel userModel =
+                                  BlocProvider.of<AuthCubitCubit>(context)
+                                      .userModel!;
+                              BlocProvider.of<CartCubit>(context).sendOreder(
+                                  email: userModel.email,
+                                  username: userModel.username);
+                            }
+                          },
+                          title: 'CHECKOUT',
+                          isLoading: state is CartSendLoading,
+                        );
                       },
-                      title: 'CHECKOUT',
                     ),
                   ),
                 ],

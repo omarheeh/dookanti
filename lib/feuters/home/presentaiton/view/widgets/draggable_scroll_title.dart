@@ -27,14 +27,16 @@ class DraggableScrollTitle extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 child: TextButton(
-                  child: Text(
+                  child: const Text(
                     'Clear All',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<CartCubit>(context).clear();
+                  },
                 ),
               ),
               const SizedBox(width: 16),
