@@ -6,6 +6,10 @@ import 'package:dookanti/core/servise/firestore_servise.dart';
 import 'package:dookanti/core/style/style.dart';
 import 'package:dookanti/feuters/auth/data/auth_repo/auth_repo_impl.dart';
 import 'package:dookanti/feuters/auth/presintation/view_model/auth_cubit/auth_cubit_cubit.dart';
+import 'package:dookanti/feuters/home/data/home_repo/home_repo_impl.dart';
+import 'package:dookanti/feuters/home/presentaiton/view_model/cubit/categories_cubit.dart';
+import 'package:dookanti/feuters/products/data/tap_repo/tap_repo_impl.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cubit/tap_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +33,11 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => PageControlerCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CategoriesCubit(
+              HomeRepoImpl(FireStoreServise(FirebaseFirestore.instance)))
+            ..getCategories(),
         ),
         BlocProvider(
           create: (context) => AuthCubitCubit(

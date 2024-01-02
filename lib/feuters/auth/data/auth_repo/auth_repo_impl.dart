@@ -43,4 +43,23 @@ class AuthRepoImpl extends AuthRepo {
   Future<void> signOut() async {
     authServise.signOut();
   }
+
+  @override
+  Future<Either<Failure, UserModel>> Regester(
+      {required String email,
+      required String username,
+      required String password}) async {
+    try {
+      UserCredential userCredential =
+          await authServise.regester(emailAddress: email, password: password);
+      var data =
+          await fireStoreServise.createUser(email: email, username: username);
+      return right(UserModel(
+        username: username,
+        email: userCredential.user!.email!,
+      ));
+    } catch (e) {
+      return left(FireBaseFailure('error in regestir'));
+    }
+  }
 }

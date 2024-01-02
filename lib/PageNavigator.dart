@@ -54,7 +54,9 @@ class _PageNavigatorState extends State<PageNavigator> {
                   },
                 );
               } else if (state is PageControlerTabView) {
-                return TabView();
+                return TabView(
+                  categoriesModel: state.categoriesModel,
+                );
               } else {
                 return SizedBox();
               }

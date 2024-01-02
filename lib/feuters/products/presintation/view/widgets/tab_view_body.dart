@@ -1,11 +1,20 @@
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dookanti/core/servise/firestore_servise.dart';
 import 'package:dookanti/core/style/app_colors.dart';
+import 'package:dookanti/feuters/home/data/models/categories_model.dart';
+import 'package:dookanti/feuters/products/data/tap_repo/tap_repo_impl.dart';
 import 'package:dookanti/feuters/products/presintation/view/widgets/tab_view_list_view.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cubit/tap_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabViewBody extends StatefulWidget {
-  const TabViewBody({super.key});
-
+  const TabViewBody({
+    super.key,
+    required this.categoriesModel,
+  });
+  final CategoriesModel categoriesModel;
   @override
   State<TabViewBody> createState() => _TabViewBodyState();
 }
@@ -15,14 +24,12 @@ class _TabViewBodyState extends State<TabViewBody>
   late TabController _tabController;
   @override
   void initState() {
-    _tabController = TabController(length: 8, vsync: this)
-      ..addListener(() {
-        if (_tabController.indexIsChanging) {
-        } else {
-          log(_tabController.index.toString());
-          setState(() {});
-        }
-      });
+    _tabController =
+        TabController(length: widget.categoriesModel.parts.length, vsync: this)
+          ..addListener(() {
+            if (_tabController.indexIsChanging) {
+            } else {}
+          });
     super.initState();
   }
 
@@ -45,8 +52,8 @@ class _TabViewBodyState extends State<TabViewBody>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Oil',
+                  Text(
+                    widget.categoriesModel.categorieName,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -68,9 +75,9 @@ class _TabViewBodyState extends State<TabViewBody>
                       color: AppColors.primaryColor,
                     ),
                     tabs: List.generate(
-                      8,
-                      (index) => const Tab(
-                        text: 'Gerat Offers',
+                      widget.categoriesModel.parts.length,
+                      (index) => Tab(
+                        text: widget.categoriesModel.parts[index].partName,
                       ),
                     ),
                   ),
@@ -82,8 +89,14 @@ class _TabViewBodyState extends State<TabViewBody>
               child: TabBarView(
                 controller: _tabController,
                 children: List.generate(
-                  8,
-                  (index) => const TabViewListView(),
+                  widget.categoriesModel.parts.length,
+                  (index) => BlocProvider(
+                    create: (context) => TapCubit(TapRepoImpl(
+                        FireStoreServise(FirebaseFirestore.instance))),
+                    child: TabViewListView(
+                      partModel: widget.categoriesModel.parts[index],
+                    ),
+                  ),
                 ),
               ),
             ),

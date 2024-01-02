@@ -7,4 +7,7 @@ final class PageControlerInitial extends PageControlerState {}
 
 final class PageControlerHome extends PageControlerState {}
 
-final class PageControlerTabView extends PageControlerState {}
+final class PageControlerTabView extends PageControlerState {
+  final CategoriesModel categoriesModel;
+  PageControlerTabView(this.categoriesModel);
+}

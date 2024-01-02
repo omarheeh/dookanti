@@ -1,4 +1,5 @@
 import 'package:dookanti/core/cubits/page_controller/page_controler_cubit.dart';
+import 'package:dookanti/feuters/home/data/models/categories_model.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/home_view.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/search_view.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,11 @@ import 'widgets/tab_view_body.dart';
 class TabView extends StatelessWidget {
   static const String id = 'tabview';
 
-  const TabView({super.key});
+  const TabView({
+    super.key,
+    required this.categoriesModel,
+  });
+  final CategoriesModel categoriesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class TabView extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             BlocProvider.of<PageControlerCubit>(context)
-                .ChangePage(HomeView.id);
+                .ChangePage(route: HomeView.id);
           },
           icon: const Icon(
             IconlyLight.arrowLeft2,
@@ -43,7 +48,9 @@ class TabView extends StatelessWidget {
           ),
         ],
       ),
-      body: const TabViewBody(),
+      body: TabViewBody(
+        categoriesModel: categoriesModel,
+      ),
     );
   }
 }

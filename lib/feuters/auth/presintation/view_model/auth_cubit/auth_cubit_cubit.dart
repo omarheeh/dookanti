@@ -30,6 +30,25 @@ class AuthCubitCubit extends Cubit<AuthCubitState> {
     );
   }
 
+  Future<void> regester(
+      {required String email,
+      required String password,
+      required String username}) async {
+    emit(AuthCubitLoading());
+    var result = await authRepoImpl.Regester(
+      email: email,
+      username: username,
+      password: password,
+    );
+    result.fold(
+      (failure) => emit(AuthCubitFailure(failure.errMessage)),
+      (user) {
+        userModel = user;
+        emit(AuthCubitSucsess());
+      },
+    );
+  }
+
   Future<void> signOut() async {
     await authRepoImpl.signOut();
     userModel = null;

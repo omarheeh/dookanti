@@ -1,12 +1,14 @@
 import 'package:dookanti/core/style/app_colors.dart';
+import 'package:dookanti/feuters/home/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class TabViewListViewItem extends StatelessWidget {
   const TabViewListViewItem({
     super.key,
+    required this.productModel,
   });
-
+  final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,7 +17,7 @@ class TabViewListViewItem extends StatelessWidget {
           width: 60,
           height: 110,
           child: CachedNetworkImage(
-            imageUrl: "https://i.postimg.cc/65PTZYrb/IMG-4066.jpg",
+            imageUrl: productModel.image,
             fit: BoxFit.contain,
             placeholder: (context, url) => const CircularProgressIndicator(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -26,8 +28,8 @@ class TabViewListViewItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Alyad organlucm egges 30 piesse',
+              Text(
+                productModel.name,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -39,7 +41,7 @@ class TabViewListViewItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('10.00\$'),
+                  Text('${productModel.price}\$'),
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,

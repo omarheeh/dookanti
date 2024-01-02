@@ -32,7 +32,7 @@ class MyValidators {
   }
 
   static String? repeatPasswordValidator({String? value, String? password}) {
-    if (value != password) {
+    if (value != password || value == '') {
       return 'Passwords do not match';
     }
     return null;
