@@ -47,4 +47,8 @@ class FireStoreServise {
         .get();
     return data;
   }
+
+  Future<void> add({required Map<String, dynamic> body}) async {
+    await firebaseFirestore.collection('orders').add(body);
+  }
 }

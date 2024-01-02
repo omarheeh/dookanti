@@ -1,4 +1,5 @@
 class ProductModel {
+  final String productId;
   final String name;
   final String categoriesId;
   final String categoriesName;
@@ -10,6 +11,7 @@ class ProductModel {
 
   ProductModel({
     required this.name,
+    required this.productId,
     required this.categoriesId,
     required this.categoriesName,
     required this.image,
@@ -22,6 +24,7 @@ class ProductModel {
   factory ProductModel.fromJson(jsonData) {
     return ProductModel(
       name: jsonData['name'],
+      productId: jsonData.id,
       categoriesId: jsonData['categoriesId'],
       categoriesName: jsonData['categoriesName'],
       image: jsonData['image'],
@@ -30,5 +33,17 @@ class ProductModel {
       price: jsonData['price'],
       quantity: jsonData['quantity'],
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'categoriesId': categoriesId,
+      'categoriesName': categoriesName,
+      'image': image,
+      'partId': partId,
+      'partName': partName,
+      'price': price,
+      'quantity': quantity,
+    };
   }
 }

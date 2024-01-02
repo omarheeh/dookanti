@@ -1,6 +1,8 @@
 import 'package:dookanti/core/functions/size_config.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/rps_custom_painter_basket.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DraggableBodySubTotal extends StatelessWidget {
   const DraggableBodySubTotal({
@@ -20,13 +22,17 @@ class DraggableBodySubTotal extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'SubTotal : \$ 16.17',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey.shade600,
-                ),
+              BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  return Text(
+                    'SubTotal : \$ ${BlocProvider.of<CartCubit>(context).sumPrice()}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade600,
+                    ),
+                  );
+                },
               ),
             ],
           ),

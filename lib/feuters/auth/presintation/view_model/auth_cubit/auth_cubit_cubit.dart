@@ -54,4 +54,12 @@ class AuthCubitCubit extends Cubit<AuthCubitState> {
     userModel = null;
     emit(AuthCubitInitial());
   }
+
+  bool isLogin() {
+    if (userModel != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

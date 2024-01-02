@@ -1,8 +1,12 @@
 import 'dart:developer';
+import 'package:dookanti/feuters/auth/data/models/user_model.dart';
+import 'package:dookanti/feuters/auth/presintation/view_model/auth_cubit/auth_cubit_cubit.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/basket_list_view.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/draggable_body_sub_title.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/draggable_scroll_title.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
@@ -43,7 +47,9 @@ class DraggableScrollBody extends StatelessWidget {
                   Expanded(
                     child: CustomButton(
                       onTap: () {
-                        log('add');
+                        controller.animateTo(0,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
                       },
                       title: 'ADD ITEMS',
                       outLine: true,
@@ -53,9 +59,17 @@ class DraggableScrollBody extends StatelessWidget {
                   Expanded(
                     child: CustomButton(
                       onTap: () {
-                        log('add');
+                        if (BlocProvider.of<AuthCubitCubit>(context)
+                            .isLogin()) {
+                          UserModel userModel =
+                              BlocProvider.of<AuthCubitCubit>(context)
+                                  .userModel!;
+                          BlocProvider.of<CartCubit>(context).sendOreder(
+                              email: userModel.email,
+                              username: userModel.username);
+                        }
                       },
-                      title: 'ADD ITEMS',
+                      title: 'CHECKOUT',
                     ),
                   ),
                 ],

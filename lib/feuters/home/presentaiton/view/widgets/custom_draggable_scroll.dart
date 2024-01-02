@@ -2,7 +2,9 @@ import 'package:dookanti/core/functions/size_config.dart';
 import 'package:dookanti/core/style/app_colors.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/draggable_scroll_body.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/rps_custom_painrer.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 class CustomDraggableScroll extends StatefulWidget {
@@ -63,30 +65,40 @@ class _CustomDraggableScrollState extends State<CustomDraggableScroll> {
                               color: Colors.white,
                             ),
                             const SizedBox(height: 7),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  '10.99\$  Bay',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(width: 7),
-                                CircleAvatar(
-                                  radius: 10,
-                                  backgroundColor:
-                                      Colors.white.withOpacity(0.3),
-                                  child: const Text(
-                                    '3',
-                                    style: TextStyle(
-                                      color: Colors.white,
+                            BlocBuilder<CartCubit, CartState>(
+                              builder: (context, state) {
+                                String sumPrice =
+                                    BlocProvider.of<CartCubit>(context)
+                                        .sumPrice()
+                                        .toStringAsFixed(2);
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '${sumPrice}\$   Basket ',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ],
+                                    const SizedBox(width: 7),
+                                    CircleAvatar(
+                                      radius: 10,
+                                      backgroundColor:
+                                          Colors.white.withOpacity(0.3),
+                                      child: Text(
+                                        BlocProvider.of<CartCubit>(context)
+                                            .cartLength()
+                                            .toString(),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
                           ],
                         ),

@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:dookanti/core/style/app_colors.dart';
 import 'package:dookanti/feuters/home/data/models/product_model.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 class TabViewListViewItem extends StatelessWidget {
   const TabViewListViewItem({
@@ -30,7 +35,7 @@ class TabViewListViewItem extends StatelessWidget {
             children: [
               Text(
                 productModel.name,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -51,22 +56,45 @@ class TabViewListViewItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.primaryColor.withOpacity(0.1),
                     ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.remove),
-                        SizedBox(width: 5),
-                        Text(
-                          '1',
-                          style: TextStyle(
-                            color: AppColors.primaryColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(width: 5),
-                        Icon(Icons.add),
-                      ],
+                    child: BlocBuilder<CartCubit, CartState>(
+                      builder: (context, state) {
+                        bool quantityOne = BlocProvider.of<CartCubit>(context)
+                                .getProductCount(productModel) ==
+                            1;
+                        return Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                BlocProvider.of<CartCubit>(context)
+                                    .removeItemFromCart(productModel, 1);
+                              },
+                              child: Icon(quantityOne
+                                  ? IconlyLight.delete
+                                  : Icons.remove),
+                            ),
+                            const SizedBox(width: 5),
+                            Text(
+                              BlocProvider.of<CartCubit>(context)
+                                  .getProductCount(productModel)
+                                  .toString(),
+                              style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            GestureDetector(
+                              onTap: () {
+                                BlocProvider.of<CartCubit>(context)
+                                    .addItemToCart(productModel);
+                              },
+                              child: const Icon(Icons.add),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   )
                 ],

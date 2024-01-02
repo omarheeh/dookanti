@@ -1,5 +1,7 @@
 import 'package:dookanti/core/style/app_colors.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DraggableScrollTitle extends StatelessWidget {
   const DraggableScrollTitle({
@@ -24,25 +26,34 @@ class DraggableScrollTitle extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                child: const Text(
-                  'Clear All',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                child: TextButton(
+                  child: Text(
+                    'Clear All',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
+                  onPressed: () {},
                 ),
               ),
               const SizedBox(width: 16),
               CircleAvatar(
                 backgroundColor: AppColors.primaryColor.withOpacity(0.7),
-                child: const FittedBox(
+                child: FittedBox(
                   fit: BoxFit.contain,
-                  child: Text(
-                    '4',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  child: BlocBuilder<CartCubit, CartState>(
+                    builder: (context, state) {
+                      return Text(
+                        BlocProvider.of<CartCubit>(context)
+                            .cartLength()
+                            .toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

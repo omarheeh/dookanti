@@ -8,7 +8,9 @@ import 'package:dookanti/feuters/auth/data/auth_repo/auth_repo_impl.dart';
 import 'package:dookanti/feuters/auth/presintation/view_model/auth_cubit/auth_cubit_cubit.dart';
 import 'package:dookanti/feuters/home/data/home_repo/home_repo_impl.dart';
 import 'package:dookanti/feuters/home/presentaiton/view_model/cubit/categories_cubit.dart';
+import 'package:dookanti/feuters/products/data/cart_repo/cart_repo_impl.dart';
 import 'package:dookanti/feuters/products/data/tap_repo/tap_repo_impl.dart';
+import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/cart_cubit.dart';
 import 'package:dookanti/feuters/products/presintation/view_model/cubit/tap_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,6 +35,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => PageControlerCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CartCubit(
+              CartRepoImpl(FireStoreServise(FirebaseFirestore.instance))),
         ),
         BlocProvider(
           create: (context) => CategoriesCubit(
