@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dookanti/core/servise/firestore_servise.dart';
 import 'package:dookanti/core/utils/errors/failure.dart';
@@ -31,6 +33,22 @@ class HomeRepoImpl extends HomeRepo {
       return right(categoriesModel);
     } catch (e) {
       return left(FireBaseFailure('error in get categories'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ProductModel>>> search(
+      {required List<String> text}) async {
+    try {
+      var data = await fireStoreServise.search(text: text);
+      List<ProductModel> products = [];
+
+      for (int i = 0; i < data.docs.length; i++) {
+        products.add(ProductModel.fromJson(data.docs[i]));
+      }
+      return right(products);
+    } catch (e) {
+      return left(FireBaseFailure('error in search qurey'));
     }
   }
 }

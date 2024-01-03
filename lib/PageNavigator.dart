@@ -1,5 +1,6 @@
 import 'package:dookanti/core/functions/size_config.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/home_view.dart';
+import 'package:dookanti/feuters/home/presentaiton/view/search_view.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/custom_draggable_scroll.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/home_view_drawer.dart';
 import 'package:dookanti/feuters/products/presintation/view/tab_view.dart';
@@ -57,6 +58,8 @@ class _PageNavigatorState extends State<PageNavigator> {
                 return TabView(
                   categoriesModel: state.categoriesModel,
                 );
+              } else if (state is PageControlerSearch) {
+                return SearchView();
               } else {
                 return SizedBox();
               }

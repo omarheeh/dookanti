@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dookanti/core/style/app_colors.dart';
 import 'package:dookanti/feuters/home/data/models/product_model.dart';
 import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/cart_cubit.dart';

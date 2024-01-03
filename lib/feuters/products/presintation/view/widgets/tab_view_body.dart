@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dookanti/core/servise/firestore_servise.dart';
 import 'package:dookanti/core/style/app_colors.dart';

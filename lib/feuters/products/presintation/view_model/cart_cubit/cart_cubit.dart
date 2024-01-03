@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
-import 'package:dookanti/feuters/home/data/home_repo/home_repo_impl.dart';
 import 'package:dookanti/feuters/home/data/models/cart_item_model.dart';
 import 'package:dookanti/feuters/home/data/models/product_model.dart';
 import 'package:dookanti/feuters/products/data/cart_repo/cart_repo_impl.dart';
 import 'package:meta/meta.dart';
-
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
@@ -84,6 +80,5 @@ class CartCubit extends Cubit<CartState> {
     });
     result.fold((failure) => emit(CartSendSucsess(failure.errMessage)),
         (sucsess) => emit(CartSendSucsess(sucsess)));
-    log(data.toString());
   }
 }

@@ -1,3 +1,4 @@
+import 'package:dookanti/core/cubits/page_controller/page_controler_cubit.dart';
 import 'package:dookanti/core/widgets/k_spaser.dart';
 import 'package:dookanti/core/widgets/title_widget.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/search_view.dart';
@@ -5,6 +6,7 @@ import 'package:dookanti/feuters/home/presentaiton/view/widgets/custom_search_bu
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/custom_swiper.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/home_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -25,13 +27,8 @@ class HomeViewBody extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: CustomSearchButton(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      child: const SearchView(),
-                    ),
-                  );
+                  BlocProvider.of<PageControlerCubit>(context)
+                      .ChangePage(route: SearchView.id);
                 },
               ),
             ),

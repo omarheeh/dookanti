@@ -51,4 +51,12 @@ class FireStoreServise {
   Future<void> add({required Map<String, dynamic> body}) async {
     await firebaseFirestore.collection('orders').add(body);
   }
+
+  Future<dynamic> search({required List<String> text}) async {
+    var data = await firebaseFirestore
+        .collection('products')
+        .where('search', arrayContainsAny: text)
+        .get();
+    return data;
+  }
 }
