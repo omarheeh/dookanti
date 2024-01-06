@@ -1,3 +1,4 @@
+import 'package:dookanti/PageNavigator.dart';
 import 'package:dookanti/core/widgets/app_custom_logo.dart';
 import 'package:dookanti/core/widgets/custom_button.dart';
 import 'package:dookanti/core/widgets/k_spaser.dart';
@@ -39,7 +40,13 @@ class LoginViewBody extends StatelessWidget {
                         outLine: true,
                         filldText: true,
                         color: Colors.grey,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: PageNavigator()));
+                        },
                       ),
                     ),
                     const SizedBox(height: 10),

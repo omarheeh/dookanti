@@ -5,6 +5,7 @@ import 'package:dookanti/core/servise/firestore_servise.dart';
 import 'package:dookanti/core/utils/errors/failure.dart';
 import 'package:dookanti/feuters/home/data/home_repo/home_repo.dart';
 import 'package:dookanti/feuters/home/data/models/categories_model.dart';
+import 'package:dookanti/feuters/home/data/models/order_model.dart';
 import 'package:dookanti/feuters/home/data/models/product_model.dart';
 
 class HomeRepoImpl extends HomeRepo {
@@ -49,6 +50,22 @@ class HomeRepoImpl extends HomeRepo {
       return right(products);
     } catch (e) {
       return left(FireBaseFailure('error in search qurey'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<OrderModel>>> getOrders(
+      {required String email}) async {
+    try {
+      var data = await fireStoreServise.getOrders(email: email);
+      log(data.docs.length.toString());
+      List<OrderModel> orders = [];
+      for (int i = 0; i < data.docs.length; i++) {
+        orders.add(OrderModel.fromJson(data.docs[i]));
+      }
+      return right(orders);
+    } catch (e) {
+      return left(FireBaseFailure('error in get orders'));
     }
   }
 }

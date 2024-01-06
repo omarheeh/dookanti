@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dookanti/feuters/auth/data/auth_repo/auth_repo_impl.dart';
 import 'package:dookanti/feuters/auth/data/models/user_model.dart';
@@ -24,7 +22,6 @@ class AuthCubitCubit extends Cubit<AuthCubitState> {
       ),
       (user) {
         userModel = user;
-        log(userModel!.email);
         emit(AuthCubitSucsess());
       },
     );

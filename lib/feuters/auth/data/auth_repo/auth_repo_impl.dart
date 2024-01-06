@@ -30,8 +30,11 @@ class AuthRepoImpl extends AuthRepo {
 
       return right(
         UserModel(
+          userId: userData.docs[0].id,
           email: userCredential.user!.email!,
           username: userData.docs[0]['username'],
+          isAdmin: password == 'adminadmin' ? true : false,
+          status: userData.docs[0]['status'] == 'active' ? true : false,
         ),
       );
     } catch (e) {
@@ -54,10 +57,15 @@ class AuthRepoImpl extends AuthRepo {
           await authServise.regester(emailAddress: email, password: password);
       var data =
           await fireStoreServise.createUser(email: email, username: username);
-      return right(UserModel(
-        username: username,
-        email: userCredential.user!.email!,
-      ));
+      return right(
+        UserModel(
+          userId: '',
+          username: username,
+          email: userCredential.user!.email!,
+          isAdmin: password == 'adminadmin' ? true : false,
+          status: true,
+        ),
+      );
     } catch (e) {
       return left(FireBaseFailure('error in regestir'));
     }

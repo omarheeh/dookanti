@@ -17,6 +17,7 @@ class FireStoreServise {
     var data = await firebaseFirestore.collection('users').add({
       'email': email,
       'username': username,
+      'status': 'active',
     });
 
     return data;
@@ -57,6 +58,43 @@ class FireStoreServise {
         .collection('products')
         .where('search', arrayContainsAny: text)
         .get();
+    return data;
+  }
+
+  Future<dynamic> getOrders({required String email}) async {
+    var data = await firebaseFirestore
+        .collection('orders')
+        .where('email', isEqualTo: email)
+        .get();
+
+    return data;
+  }
+
+  Future<dynamic> changeStutus(
+      {required String id, required String stutus}) async {
+    var data = await firebaseFirestore.collection('users').doc(id).update({
+      'status': stutus,
+    });
+    return data;
+  }
+
+  Future<dynamic> getStatus({required String id}) async {
+    var data = await firebaseFirestore.collection('users').doc(id).get();
+    return data;
+  }
+
+  Future<dynamic> addCategory({required Map<String, dynamic> body}) async {
+    var data = await firebaseFirestore.collection('categories').add(body);
+    return data;
+  }
+
+  Future<dynamic> addPart(
+      {required Map<String, dynamic> body, required String id}) async {
+    var data = await firebaseFirestore
+        .collection('categories')
+        .doc(id)
+        .collection('parts')
+        .add(body);
     return data;
   }
 }

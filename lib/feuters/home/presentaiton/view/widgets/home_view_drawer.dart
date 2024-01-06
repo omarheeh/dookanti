@@ -5,6 +5,8 @@ import 'package:dookanti/feuters/aboutus/presintaion/view/contact_us.dart';
 import 'package:dookanti/feuters/auth/presintation/view/login_view.dart';
 import 'package:dookanti/feuters/auth/presintation/view/profile_view.dart';
 import 'package:dookanti/feuters/auth/presintation/view_model/auth_cubit/auth_cubit_cubit.dart';
+import 'package:dookanti/feuters/dashboard/presintation/view/dashboard_view.dart';
+import 'package:dookanti/feuters/home/presentaiton/view/order_view.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/drawer_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,10 +70,47 @@ class HomeViewDrawer extends StatelessWidget {
                           }
                         },
                       ),
+                      Visibility(
+                        visible: BlocProvider.of<AuthCubitCubit>(context)
+                                    .userModel ==
+                                null
+                            ? false
+                            : BlocProvider.of<AuthCubitCubit>(context)
+                                .userModel!
+                                .isAdmin,
+                        child: DrawerListItem(
+                          title: 'DASHBOARD',
+                          iconData: Icons.dashboard_outlined,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: const DashBoardView(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                       DrawerListItem(
                         title: 'My Orders',
                         iconData: IconlyLight.buy,
-                        onTap: () {},
+                        onTap: () {
+                          if (BlocProvider.of<AuthCubitCubit>(context)
+                              .isLogin()) {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: OrederView()));
+                          } else {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: LoginView()));
+                          }
+                        },
                       ),
                       DrawerListItem(
                         title: 'Favorite Items',

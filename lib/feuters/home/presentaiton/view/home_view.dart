@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dookanti/core/servise/firestore_servise.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/home_view_body.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/notification_view.dart';
 import 'package:flutter/material.dart';

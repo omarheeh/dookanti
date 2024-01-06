@@ -1,4 +1,5 @@
 import 'package:dookanti/feuters/auth/data/models/user_model.dart';
+import 'package:dookanti/feuters/auth/presintation/view/login_view.dart';
 import 'package:dookanti/feuters/auth/presintation/view_model/auth_cubit/auth_cubit_cubit.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/basket_list_view.dart';
 import 'package:dookanti/feuters/home/presentaiton/view/widgets/draggable_body_sub_title.dart';
@@ -7,6 +8,7 @@ import 'package:dookanti/feuters/products/presintation/view_model/cart_cubit/car
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
 
@@ -68,6 +70,12 @@ class DraggableScrollBody extends StatelessWidget {
                               BlocProvider.of<CartCubit>(context).sendOreder(
                                   email: userModel.email,
                                   username: userModel.username);
+                            } else {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: LoginView()));
                             }
                           },
                           title: 'CHECKOUT',

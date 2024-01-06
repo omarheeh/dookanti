@@ -25,7 +25,7 @@ class DraggableBodySubTotal extends StatelessWidget {
               BlocBuilder<CartCubit, CartState>(
                 builder: (context, state) {
                   return Text(
-                    'SubTotal : \$ ${BlocProvider.of<CartCubit>(context).sumPrice()}',
+                    'SubTotal : \$ ${BlocProvider.of<CartCubit>(context).sumPrice().toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

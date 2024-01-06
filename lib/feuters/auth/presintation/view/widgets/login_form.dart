@@ -75,10 +75,24 @@ class _LoginFormState extends State<LoginForm> {
           BlocListener<AuthCubitCubit, AuthCubitState>(
             listener: (context, state) {
               if (state is AuthCubitSucsess) {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        type: PageTransitionType.fade, child: PageNavigator()));
+                if (BlocProvider.of<AuthCubitCubit>(context)
+                    .userModel!
+                    .status) {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.fade,
+                          child: const PageNavigator()));
+                } else {
+                  BlocProvider.of<AuthCubitCubit>(context).signOut();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                    'You is Blocked!',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  )));
+                }
               }
               if (state is AuthCubitFailure) {
                 log(state.errMessage);
