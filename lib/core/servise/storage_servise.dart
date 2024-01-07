@@ -6,8 +6,9 @@ class StorageService {
   final FirebaseStorage firebaseStorage;
   StorageService(this.firebaseStorage);
 
-  Future<String> uploadImgaeToStorage(String childName, Uint8List file) async {
-    Reference ref = firebaseStorage.ref('categories_image').child(childName);
+  Future<String> uploadImgaeToStorage(
+      String childName, Uint8List file, String collection) async {
+    Reference ref = firebaseStorage.ref(collection).child(childName);
     UploadTask uploadTask =
         ref.putData(file, SettableMetadata(contentType: 'image/png'));
     TaskSnapshot snapshot = await uploadTask;

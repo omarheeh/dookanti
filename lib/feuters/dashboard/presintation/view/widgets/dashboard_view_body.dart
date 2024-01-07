@@ -1,3 +1,4 @@
+import 'package:dookanti/feuters/dashboard/presintation/view/add_product_view.dart';
 import 'package:dookanti/feuters/dashboard/presintation/view/categorys_view.dart';
 import 'package:dookanti/feuters/dashboard/presintation/view/users_view.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class DashBoardViewBody extends StatelessWidget {
                   icon: IconlyLight.bag2,
                   number: '200',
                   color: Color(0xff0E3EE7),
-                  navigator: UsersView.id,
+                  navigator: AddProductView.id,
                 ),
                 DashBoardGridViewItem(
                   title: 'Orders',

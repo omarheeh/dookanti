@@ -97,4 +97,9 @@ class FireStoreServise {
         .add(body);
     return data;
   }
+
+  Future<dynamic> addProduct({required Map<String, dynamic> body}) async {
+    var data = await firebaseFirestore.collection('products').add(body);
+    return data;
+  }
 }

@@ -5,6 +5,7 @@ import 'package:dookanti/core/servise/firestore_servise.dart';
 import 'package:dookanti/core/utils/errors/failure.dart';
 import 'package:dookanti/feuters/auth/data/models/user_model.dart';
 import 'package:dookanti/feuters/dashboard/data/dashboard_repo/dashboard_repo.dart';
+import 'package:dookanti/feuters/home/data/models/categories_model.dart';
 
 class DashBoardRepoImpl extends DashBoardRepo {
   final FireStoreServise fireStoreServise;
@@ -50,6 +51,31 @@ class DashBoardRepoImpl extends DashBoardRepo {
       return right(isActive);
     } catch (e) {
       return left(FireBaseFailure('error'));
+    }
+  }
+
+  Future<Either<Failure, List<CategoriesModel>>> getCategories() async {
+    try {
+      var data = await fireStoreServise.get(collection: 'categories');
+
+      List<CategoriesModel> categoriesModel = [];
+      for (int i = 0; i < data.docs.length; i++) {
+        var dataPart = await fireStoreServise.getPart(
+          firestCollection: 'categories',
+          lastCollection: 'parts',
+          id: data.docs[i].id,
+        );
+
+        categoriesModel.add(
+          CategoriesModel.jsonData(
+            data.docs[i],
+            dataPart,
+          ),
+        );
+      }
+      return right(categoriesModel);
+    } catch (e) {
+      return left(FireBaseFailure('error in get categories'));
     }
   }
 }

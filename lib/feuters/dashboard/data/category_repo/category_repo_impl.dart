@@ -16,7 +16,8 @@ class CategoryRepoImpl extends CategoryRepo {
       required List<String> partsList,
       required Uint8List file}) async {
     try {
-      String url = await storageService.uploadImgaeToStorage(name, file);
+      String url = await storageService.uploadImgaeToStorage(
+          name, file, 'categories_image');
       var categorieData = await fireStoreServise.addCategory(body: {
         'name': name,
         'image': url,

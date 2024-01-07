@@ -7,6 +7,7 @@ import 'package:dookanti/core/style/style.dart';
 import 'package:dookanti/feuters/auth/data/auth_repo/auth_repo_impl.dart';
 import 'package:dookanti/feuters/auth/presintation/view_model/auth_cubit/auth_cubit_cubit.dart';
 import 'package:dookanti/feuters/dashboard/presintation/view/add_categrys_view.dart';
+import 'package:dookanti/feuters/dashboard/presintation/view/add_product_view.dart';
 import 'package:dookanti/feuters/dashboard/presintation/view/categorys_view.dart';
 import 'package:dookanti/feuters/dashboard/presintation/view/new_user_view.dart';
 import 'package:dookanti/feuters/dashboard/presintation/view/users_view.dart';
@@ -86,6 +87,12 @@ class MyApp extends StatelessWidget {
             case AddCategoryView.id:
               return PageTransition(
                 child: AddCategoryView(),
+                type: PageTransitionType.fade,
+              );
+              break;
+            case AddProductView.id:
+              return PageTransition(
+                child: AddProductView(),
                 type: PageTransitionType.fade,
               );
               break;
