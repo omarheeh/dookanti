@@ -25,4 +25,4 @@ samples, guidance on mobile development, and a full API reference.
 |   |   |   |   |   |
 |---|---|---|---|---|
 | ![Screenshot_1704651729](https://github.com/omarheeh/dookanti/assets/67519670/ccc51547-8d0e-433e-aa4b-a4322b14625e)|  ![Screenshot_1704651707](https://github.com/omarheeh/dookanti/assets/67519670/a44c5a5b-6a77-41d0-988c-5c59907719bd) | ![Screenshot_1704651739](https://github.com/omarheeh/dookanti/assets/67519670/4bd93a51-7a4f-49fa-a3ed-01974956dd02) |  ![Screenshot_1704651743](https://github.com/omarheeh/dookanti/assets/67519670/57c97711-153f-44f2-a70b-61644e1f3694)|  
-|   |   |   |   |   |
+| ![Screenshot_1704651770](https://github.com/omarheeh/dookanti/assets/67519670/919fee77-9d30-449f-ab2a-897754bb5e74)  |  ![Screenshot_1704651776](https://github.com/omarheeh/dookanti/assets/67519670/5596b23d-9260-40c2-abb4-ec9d4fc6849f) |  ![Screenshot_1704651784](https://github.com/omarheeh/dookanti/assets/67519670/ccd2981d-0618-4ca1-8b67-02cd65182ff4) |  ![Screenshot_1704651793](https://github.com/omarheeh/dookanti/assets/67519670/04c17d9c-a196-47ae-94b6-f000c7886f19) |   |
